@@ -1,0 +1,49 @@
+﻿
+<div class="bar bar-header bar-energized">
+    <h1 class="title">BeerWhere</h1>
+</div>
+
+<ion-view>
+    <ion-content class="has-header has-footer">
+
+        <div ng-show="IsOffline" class="padding">
+            <h4 class="positive text-center padding-vertical">
+                Please check your internet connection and try again.
+            </h4>
+            <a class="button button-block button-calm row-center" ng-click="Retry()">
+                Retry
+            </a>
+        </div>
+
+        <div ng-hide="IsOffline">
+            <div ng-show="IsLoading">
+                <div class="spinner">
+                    <div class="rect1"></div>
+                    <div class="rect2"></div>
+                    <div class="rect3"></div>
+                    <div class="rect4"></div>
+                    <div class="rect5"></div>
+                </div>
+            </div>
+            <div class="ng-hide" ng-hide="IsLoading">
+
+                <div>
+                    <ul class="list">
+                        <li class="item checkin" ng-repeat="checkin in checkins" ng-class-even="'even'">
+                            <strong>{{ checkin.user.user_name }}</strong> is drinking a <em>{{ checkin.beer.beer_name }}</em><br />
+                            At {{ checkin.venue.venue_name }}
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+    </ion-content>
+</ion-view>
+
+<div class="bar bar-footer">
+    <button class="button button-dark">Beers</button>
+    <div class="title">checkins</div>
+    <button class="button button-dark">Pubs</button>
+</div>
