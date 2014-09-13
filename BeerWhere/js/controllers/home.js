@@ -1,31 +1,24 @@
-﻿angular.module('beerwhere.controller.home', [])
+﻿angular.module('beerwhere')
 
-.controller('HomeCtrl', function ($scope, UntappdServer, $ionicPopup) {
+.controller('HomeCtrl', function ($scope, UntappdServer, logService) {
 
     window.HandleDeviceReady(loadHome);
 
     function loadHome() {
-        
-        if (!$scope.IsLoading) {
-            $scope.IsLoading = true;
 
             navigator.geolocation.getCurrentPosition(function (position) {
-                console.log("position: " + JSON.stringify(position));
-                UntappdServer.localFeed(position.coords.latitude, position.coords.longitude,
-                    function (response) {
-                        $scope.checkins = response.checkins.items;
+                logService.log("position: " + JSON.stringify(position));
 
-                        $scope.IsLoading = false;
-                    }, function (error) {
-                        alert("localFeed error: " + JSON.stringify(error));
-                        $scope.IsLoading = false;
-                    });
+                UntappdServer.localFeed(position.coords.latitude, position.coords.longitude)
+                .then(function (response) {
+                    logService.log("UntappdServer.localFeed: " + JSON.stringify(response));
+
+                    $scope.checkins = response.checkins.items;
+                });
             },
             function (error) {
-                alert("getCurrentPosition error: " + JSON.stringify(error));
-                $scope.IsLoading = false;
+                logService.log("getCurrentPosition error: " + JSON.stringify(error));
             });
-        }
     };
 
 

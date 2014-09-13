@@ -16,34 +16,26 @@
         </div>
 
         <div ng-hide="IsOffline">
-            <div ng-show="IsLoading">
-                <div class="spinner">
-                    <div class="rect1"></div>
-                    <div class="rect2"></div>
-                    <div class="rect3"></div>
-                    <div class="rect4"></div>
-                    <div class="rect5"></div>
+
+            <div class="beer-list">
+                <div class="beer-list-item" ng-repeat="checkin in checkins">
+
+                    <div class="beer-list-user">
+                        <img src="{{ checkin.user.user_avatar }}" />
+                        <h2>{{ checkin.user.user_name }}</h2>
+                        <h3>{{ checkin.venue.venue_name }}</h3>
+                    </div>
+                    <div class="beer-list-beer">
+                        <img src="{{ checkin.beer.beer_label }}" />
+                        <h2>{{ checkin.beer.beer_name }}</h2>
+                        <h3>by {{ checkin.brewery.brewery_name }}</h3>
+                    </div>
+
                 </div>
             </div>
-            <div class="ng-hide" ng-hide="IsLoading">
 
-                <div>
-                    <ul class="list">
-                        <li class="item checkin" ng-repeat="checkin in checkins" ng-class-even="'even'">
-                            <strong>{{ checkin.user.user_name }}</strong> is drinking a <em>{{ checkin.beer.beer_name }}</em><br />
-                            At {{ checkin.venue.venue_name }}
-                        </li>
-                    </ul>
-                </div>
-
-            </div>
         </div>
 
     </ion-content>
 </ion-view>
 
-<div class="bar bar-footer">
-    <button class="button button-dark">Beers</button>
-    <div class="title">checkins</div>
-    <button class="button button-dark">Pubs</button>
-</div>

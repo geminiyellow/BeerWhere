@@ -1,45 +1,43 @@
-﻿angular.module('beerwhere', ['ionic', 'beerwhere.controller.home', 'beerwhere.service.untappd'])
+﻿angular.module('beerwhere', ['ionic'])
 
+//Set to false for release to stop console debugging
+.constant('DEBUG_MODE', true)
 
 .config(function ($compileProvider) {
     // Needed for phonegap routing
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|ghttps?|ms-appx|x-wmapp0):/);
 })
 
-.config(function ($stateProvider, $urlRouterProvider) {
+.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
 
-    // Set up the initial routes that our app will respond to.
-    // These are then tied up to our nav router which animates and
-    // updates a navigation bar
     $stateProvider.state('home', {
         url: "/home",
         templateUrl: 'views/home.html',
         controller: 'HomeCtrl'
     });
 
-    $stateProvider.state('game', {
-        url: "/game",
-        templateUrl: 'views/game.html',
-        controller: 'GameCtrl'
-    });
-
-    $stateProvider.state('stats', {
-        url: "/stats",
-        templateUrl: 'views/stats.html',
-        controller: 'StatsCtrl'
-    });
-
-    $stateProvider.state('leaderboards', {
-        url: "/leaderboards",
-        templateUrl: 'views/leaderboards.html',
-        controller: 'LeadersCtrl'
-    });
-
-    $stateProvider.state('settings', {
-        url: "/settings",
-        templateUrl: 'views/settings.html',
-        controller: 'SettingsCtrl'
-    });
-
     $urlRouterProvider.otherwise('/home');
-});
+}])
+
+//Global loading handler based on promises in the queue
+.config(['$provide', function ($provide) {
+    $provide.decorator('$q', function ($delegate, $rootScope) {
+        var pendingPromisses = 0;
+        $rootScope.$watch(
+          function () { return pendingPromisses > 0; },
+          function (loading) { $rootScope.loading = loading; console.log('loading: ' + loading); }
+        );
+        var $q = $delegate;
+        var origDefer = $q.defer;
+        $q.defer = function () {
+            var defer = origDefer();
+            pendingPromisses++;
+            defer.promise.finally(function () {
+                pendingPromisses--;
+            });
+            return defer;
+        };
+        return $q;
+    });
+}]);
+
