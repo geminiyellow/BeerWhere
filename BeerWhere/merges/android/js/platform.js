@@ -15,3 +15,8 @@
 window.device = window.device || {};
 
 window.device.uuid = "123";
+
+//TODO - Fix location in the emulator
+navigator.geolocation.getCurrentPosition = function (callback) {
+    callback({ coords: { latitude: -36.84846, longitude: 174.763331 } });
+};
