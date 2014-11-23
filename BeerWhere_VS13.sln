@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "BeerWhere", "BeerWhere\BeerWhere.jsproj", "{5BAF2B2E-A5BE-404B-9E6C-C1533A4CC2E1}"
+Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "BeerWhere_VS13", "BeerWhere\BeerWhere_VS13.jsproj", "{5BAF2B2E-A5BE-404B-9E6C-C1533A4CC2E1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B5F1B509-D94D-4403-8E6F-D934E6C391A7}"
 	ProjectSection(SolutionItems) = preProject
