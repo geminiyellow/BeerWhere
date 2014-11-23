@@ -2,6 +2,8 @@
 
 .controller('HomeCtrl', function ($scope, UntappdServer, logService) {
 
+    $scope.loading = true;
+
     window.HandleDeviceReady(loadHome);
 
     function loadHome() {
@@ -14,10 +16,13 @@
                 logService.log("UntappdServer.localFeed: " + JSON.stringify(response));
 
                 $scope.checkins = response.checkins.items;
+
+                $scope.loading = false;
             });
         },
         function (error) {
             logService.log("getCurrentPosition error: " + JSON.stringify(error));
+            $scope.loading = false;
         });
     };
 

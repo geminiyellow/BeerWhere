@@ -149,6 +149,7 @@
     <Content Include="merges\windows8\js\platform.js" />
     <Content Include="merges\windows8\js\winstore-jscompat.js" />
     <Content Include="res\cert\android\ant.properties" />
+    <Content Include="res\cert\windows8\CordovaApp_TemporaryKey.pfx" />
     <Content Include="res\icons\android\icon-36-ldpi.png" />
     <Content Include="res\icons\android\icon-48-mdpi.png" />
     <Content Include="res\icons\android\icon-72-hdpi.png" />
