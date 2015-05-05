@@ -1,5 +1,3 @@
-﻿/****
-
-    THIS FILE GETS OVERRIDEN BY PLATFORM SPECIFIC CSS FROM THE MERGES FOLDER
-
-****/
+﻿body {
+    -ms-content-zooming: none;
+}

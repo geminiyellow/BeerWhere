@@ -4,7 +4,7 @@
 angular.module('beerwhere')
 .factory('UntappdServer', function ($http, logService) {
 
-    var __apiUrl = "http://api.untappd.com/v4";
+    var __apiUrl = "https://api.untappd.com/v4";
     var __clientId = "14B1F22CFC4A75654230472242F6B8948426BF2D";
     var __clientSecret = "ADE6438ECA2F3DAA5BD6F8D7941E478490BB04D1";
 
